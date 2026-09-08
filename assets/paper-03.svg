@@ -1,29 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="840" viewBox="0 0 640 840">
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="540" viewBox="0 0 720 540">
   <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="100%" stop-color="#7c3aed"/>
-    </linearGradient>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#5b21b6"/></linearGradient>
+    <marker id="arr3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#c4b5fd"/></marker>
   </defs>
-  <rect width="640" height="840" fill="#f8fafc"/>
-  <rect x="28" y="28" width="584" height="784" rx="18" fill="#fff" stroke="#e2e8f0"/>
-  <rect x="28" y="28" width="584" height="110" rx="18" fill="url(#g)"/>
-  <rect x="28" y="100" width="584" height="38" fill="url(#g)"/>
-  <text x="56" y="78" fill="#fff" font-family="ui-sans-serif,system-ui" font-size="22" font-weight="700">RESEARCH RADAR PREVIEW</text>
-  <text x="56" y="160" fill="#0f172a" font-family="ui-sans-serif,system-ui" font-size="28" font-weight="800">HarnessBench</text>
-  <text x="56" y="198" fill="#64748b" font-family="ui-sans-serif,system-ui" font-size="16">Agent Harness · ACL</text>
-  <rect x="56" y="230" width="420" height="12" rx="6" fill="#e2e8f0"/>
-  <rect x="56" y="258" width="480" height="12" rx="6" fill="#e2e8f0"/>
-  <rect x="56" y="286" width="360" height="12" rx="6" fill="#e2e8f0"/>
-  <rect x="56" y="330" width="500" height="12" rx="6" fill="#f1f5f9"/>
-  <rect x="56" y="358" width="470" height="12" rx="6" fill="#f1f5f9"/>
-  <rect x="56" y="386" width="510" height="12" rx="6" fill="#f1f5f9"/>
-  <rect x="56" y="414" width="390" height="12" rx="6" fill="#f1f5f9"/>
-  <rect x="56" y="458" width="500" height="12" rx="6" fill="#f1f5f9"/>
-  <rect x="56" y="486" width="440" height="12" rx="6" fill="#f1f5f9"/>
-  <rect x="56" y="514" width="480" height="12" rx="6" fill="#f1f5f9"/>
-  <rect x="56" y="560" width="200" height="28" rx="14" fill="#7c3aed" opacity="0.15"/>
-  <text x="76" y="580" fill="#7c3aed" font-family="ui-sans-serif,system-ui" font-size="14" font-weight="700">PDF / first page</text>
-  <circle cx="560" cy="760" r="28" fill="#7c3aed" opacity="0.9"/>
-  <path d="M548 760 h24 M560 748 v24" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <rect width="720" height="540" rx="18" fill="#f8fafc"/>
+  <rect width="720" height="52" fill="url(#bg3)"/>
+  <text x="24" y="33" fill="#fff" font-family="system-ui,sans-serif" font-size="16" font-weight="700">AgentEvolver · Fig.2 self-evolving loop (SVG redraw)</text>
+
+  <!-- center policy -->
+  <circle cx="360" cy="250" r="58" fill="#ede9fe" stroke="#7c3aed" stroke-width="3"/>
+  <text x="360" y="244" text-anchor="middle" fill="#5b21b6" font-family="system-ui" font-size="13" font-weight="800">Agent</text>
+  <text x="360" y="264" text-anchor="middle" fill="#5b21b6" font-family="system-ui" font-size="13" font-weight="800">Policy πθ</text>
+
+  <!-- three mechanisms -->
+  <rect x="40" y="100" width="200" height="110" rx="14" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="140" y="130" text-anchor="middle" fill="#7c3aed" font-family="system-ui" font-size="12" font-weight="800">① Self-Questioning</text>
+  <text x="140" y="156" text-anchor="middle" fill="#0f172a" font-family="system-ui" font-size="12">env → tasks</text>
+  <text x="140" y="176" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="11">curiosity task synth</text>
+  <text x="140" y="194" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="11">+ LLM judge reward</text>
+
+  <rect x="260" y="390" width="200" height="100" rx="14" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="360" y="420" text-anchor="middle" fill="#7c3aed" font-family="system-ui" font-size="12" font-weight="800">② Self-Navigating</text>
+  <text x="360" y="446" text-anchor="middle" fill="#0f172a" font-family="system-ui" font-size="12">experience reuse</text>
+  <text x="360" y="466" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="11">mixed rollout + boost</text>
+
+  <rect x="480" y="100" width="200" height="110" rx="14" fill="#fff" stroke="#7c3aed" stroke-width="2"/>
+  <text x="580" y="130" text-anchor="middle" fill="#7c3aed" font-family="system-ui" font-size="12" font-weight="800">③ Self-Attributing</text>
+  <text x="580" y="156" text-anchor="middle" fill="#0f172a" font-family="system-ui" font-size="12">traj → policy</text>
+  <text x="580" y="176" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="11">step credit / PRM-like</text>
+  <text x="580" y="194" text-anchor="middle" fill="#64748b" font-family="system-ui" font-size="11">attr + outcome fuse</text>
+
+  <line x1="240" y1="155" x2="305" y2="220" stroke="#c4b5fd" stroke-width="2.5" marker-end="url(#arr3)"/>
+  <line x1="480" y1="155" x2="415" y2="220" stroke="#c4b5fd" stroke-width="2.5" marker-end="url(#arr3)"/>
+  <line x1="360" y1="308" x2="360" y2="385" stroke="#c4b5fd" stroke-width="2.5" marker-end="url(#arr3)"/>
+
+  <text x="140" y="250" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">Env → Tasks</text>
+  <text x="580" y="250" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">Traj → Policy</text>
+  <text x="360" y="520" text-anchor="middle" fill="#94a3b8" font-family="system-ui" font-size="11">Redrawn from paper Fig.2 · arXiv:2511.10395</text>
 </svg>

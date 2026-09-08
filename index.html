@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Research Radar · Push Design v1.1 · image + url + text</title>
+<title>Research Radar · Push Design v1.2 · methodology SVG from papers</title>
 <style>
   :root{
     --ink:#0b1220;
@@ -181,7 +181,7 @@
     text-decoration:none;
   }
   .preview img{
-    display:block;width:100%;aspect-ratio:3/4;object-fit:cover;
+    display:block;width:100%;aspect-ratio:4/3;object-fit:cover;
     background:linear-gradient(180deg,#eef2ff,#f8fafc);
   }
   .preview .cap{
@@ -210,7 +210,7 @@
 </head>
 <body>
   <main class="page">
-    <div class="label"><i></i> Design only · v1.1</div>
+    <div class="label"><i></i> Design only · v1.2 · methodology SVG</div>
     <h1>Research Radar 推送版式</h1>
     <p class="lede">沿用你们现有「RECENT PUBLICATIONS + AI 中文导读」气质，改成 Agent / Skill / Tool / Ontology 雷达；企微群推送优先可读密度，网页归档保留筛选与日期轴。下方示例内容为占位样例，非真实检索结果。</p>
 
@@ -248,105 +248,105 @@
           <article class="paper">
             <div class="rank"><span>01</span> HIT · agentic skill</div>
             <div class="paper-main">
-              <a class="preview" href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">
-                <img src="assets/paper-01.svg" alt="Skill Weaver paper preview" />
-                <div class="cap">预览图</div>
+              <a class="preview" href="https://arxiv.org/abs/2603.25158" target="_blank" rel="noopener">
+                <img src="assets/paper-01.svg" alt="Trace2Skill Fig.2 methodology SVG" />
+                <div class="cap">方法图 · SVG</div>
               </a>
               <div class="paper-copy">
-                <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
-                <div class="authors">A. Chen, L. Park, M. Rivera — example authors</div>
+                <h4>Trace2Skill: Distill Trajectory-Local Lessons into Transferable Agent Skills</h4>
+                <div class="authors">J. Ni, Y. Liu, X. Liu, Y. Sun, M. Zhou et al.</div>
                 <div class="venue">
                   <span>arXiv · cs.AI</span>
                   <span>·</span>
-                  <span>2026-09-07</span>
+                  <span>2026-03</span>
                 </div>
                 <div class="url-row">
-                  <a href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">arxiv.org/abs/2609.01234</a>
-                  <span class="doi">DOI · example</span>
+                  <a href="https://arxiv.org/abs/2603.25158" target="_blank" rel="noopener">arxiv.org/abs/2603.25158</a>
+                  <span class="doi">Fig.2 · 3-stage pipeline</span>
                 </div>
                 <div class="tags">
                   <span class="tag">Agentic skill</span>
-                  <span class="tag">Skill evolution</span>
+                  <span class="tag">Skill distillation</span>
                   <span class="tag site">site:arxiv.org</span>
                 </div>
               </div>
             </div>
             <div class="ai">
               <div class="ai-label">AI 中文导读</div>
-              <p class="q"><span class="k">做什么</span> 从成功轨迹里自动抽出可复用 skill，并在后续任务中持续演化。</p>
-              <p class="q"><span class="k">怎么做的</span> 轨迹切片 → skill 模板蒸馏 → 在线验证回路；失败样本回流改写。</p>
-              <p class="q"><span class="k">新在哪</span> 把「技能发现」和「技能演化」做成同一闭环，而不是一次性提取。</p>
-              <p class="q"><span class="k">启示</span> 适合 Win-Agent / Eve DSH：把审单、质检等重复流程沉淀成可版本化 skill。</p>
+              <p class="q"><span class="k">做什么</span> 把多条执行轨迹里的局部教训，蒸馏成可跨模型迁移的 skill 目录。</p>
+              <p class="q"><span class="k">怎么做的</span> 轨迹生成 → 并行成败分析出 patch → 层级合并成单一 SKILL.md（Fig.2）。</p>
+              <p class="q"><span class="k">新在哪</span> 用 many-to-one 并行归纳，替代逐条 online 改 skill，减少碎片与顺序偏差。</p>
+              <p class="q"><span class="k">启示</span> Eve/Win-Agent 的 skill 库应用「批量轨迹 → 一次合并」，而不是每条日志立刻改文档。</p>
             </div>
           </article>
 
           <article class="paper">
             <div class="rank"><span>02</span> HIT · tool retrieval</div>
             <div class="paper-main">
-              <a class="preview" href="https://openreview.net/forum?id=OntoToolDemo" target="_blank" rel="noopener">
-                <img src="assets/paper-02.svg" alt="OntoTool paper preview" />
-                <div class="cap">预览图</div>
+              <a class="preview" href="https://arxiv.org/abs/2507.00487" target="_blank" rel="noopener">
+                <img src="assets/paper-02.svg" alt="MassTool Fig.2 methodology SVG" />
+                <div class="cap">方法图 · SVG</div>
               </a>
               <div class="paper-copy">
-                <h4>OntoTool: Ontology-Aware Tool Retrieval for Multi-Agent Systems</h4>
-                <div class="authors">Y. Sato, R. Nguyen — example authors</div>
+                <h4>MassTool: A Multi-Task Search-Based Tool Retrieval Framework for LLMs</h4>
+                <div class="authors">J. Lin, X. Wang, X. Dai, M. Zhu, B. Chen et al.</div>
                 <div class="venue">
-                  <span>OpenReview / ICLR-style</span>
+                  <span>arXiv · cs.IR / cs.CL</span>
                   <span>·</span>
-                  <span>2026-09-07</span>
+                  <span>2025-07</span>
                 </div>
                 <div class="url-row">
-                  <a href="https://openreview.net/forum?id=OntoToolDemo" target="_blank" rel="noopener">openreview.net/forum?id=OntoToolDemo</a>
-                  <span class="doi">URL · example</span>
+                  <a href="https://arxiv.org/abs/2507.00487" target="_blank" rel="noopener">arxiv.org/abs/2507.00487</a>
+                  <span class="doi">Fig.2 · two-tower</span>
                 </div>
                 <div class="tags">
                   <span class="tag">Tool retrieval</span>
-                  <span class="tag">Ontology-aware agent</span>
-                  <span class="tag site">site:openreview.net</span>
+                  <span class="tag">Tool learning</span>
+                  <span class="tag site">site:arxiv.org</span>
                 </div>
               </div>
             </div>
             <div class="ai">
               <div class="ai-label">AI 中文导读</div>
-              <p class="q"><span class="k">做什么</span> 用领域本体约束工具召回，降低多 agent 选错工具的概率。</p>
-              <p class="q"><span class="k">怎么做的</span> 本体图嵌入 + 查询意图对齐 + 工具 schema 重排。</p>
-              <p class="q"><span class="k">新在哪</span> 检索目标不是文本相似，而是「本体角色可满足」。</p>
-              <p class="q"><span class="k">启示</span> 企微/业务工具多时，先建轻量 ontology，再做 tool router，比纯 embedding 更稳。</p>
+              <p class="q"><span class="k">做什么</span> 在海量工具里先判断「要不要调工具」，再精准召回候选工具。</p>
+              <p class="q"><span class="k">怎么做的</span> 双塔：Usage Detection + Retrieval（QC-GCN / SUIM / AdaKT），联合优化（Fig.2）。</p>
+              <p class="q"><span class="k">新在哪</span> 把 tool retrieval 建成双步决策，并强化 query 侧表征，而不只优化 tool embedding。</p>
+              <p class="q"><span class="k">启示</span> 雷达流水线/企微工具路由应先做 usage detect，再 retrieval，减少瞎调 API。</p>
             </div>
           </article>
 
           <article class="paper">
-            <div class="rank"><span>03</span> HIT · agent harness</div>
+            <div class="rank"><span>03</span> HIT · self-evolving agent</div>
             <div class="paper-main">
-              <a class="preview" href="https://aclanthology.org/2026.acl-long.0000/" target="_blank" rel="noopener">
-                <img src="assets/paper-03.svg" alt="HarnessBench paper preview" />
-                <div class="cap">预览图</div>
+              <a class="preview" href="https://arxiv.org/abs/2511.10395" target="_blank" rel="noopener">
+                <img src="assets/paper-03.svg" alt="AgentEvolver Fig.2 methodology SVG" />
+                <div class="cap">方法图 · SVG</div>
               </a>
               <div class="paper-copy">
-                <h4>HarnessBench: Measuring Agent Runtime Reliability under Tool Failures</h4>
-                <div class="authors">K. Brooks et al. — example authors</div>
+                <h4>AgentEvolver: Towards Efficient Self-Evolving Agent System</h4>
+                <div class="authors">Y. Zhai, S. Tao, C. Chen, A. Zou, Z. Chen et al. (Tongyi Lab)</div>
                 <div class="venue">
-                  <span>ACL Anthology</span>
+                  <span>arXiv · cs.AI</span>
                   <span>·</span>
-                  <span>2026-09-07</span>
+                  <span>2025-11</span>
                 </div>
                 <div class="url-row">
-                  <a href="https://aclanthology.org/2026.acl-long.0000/" target="_blank" rel="noopener">aclanthology.org/2026.acl-long.0000</a>
-                  <span class="doi">URL · example</span>
+                  <a href="https://arxiv.org/abs/2511.10395" target="_blank" rel="noopener">arxiv.org/abs/2511.10395</a>
+                  <span class="doi">Fig.2 · 3 mechanisms</span>
                 </div>
                 <div class="tags">
+                  <span class="tag">Self-evolving agent</span>
                   <span class="tag">Agent runtime</span>
-                  <span class="tag">Agent harness</span>
-                  <span class="tag site">site:aclanthology.org</span>
+                  <span class="tag site">site:arxiv.org</span>
                 </div>
               </div>
             </div>
             <div class="ai">
               <div class="ai-label">AI 中文导读</div>
-              <p class="q"><span class="k">做什么</span> 评测 agent runtime 在工具超时、脏返回、权限失败下的可靠性。</p>
-              <p class="q"><span class="k">怎么做的</span> 注入故障剧本 + 观测恢复策略 + 给出 harness 分数。</p>
-              <p class="q"><span class="k">新在哪</span> 把「会不会用工具」换成「工具坏了还能不能稳住」。</p>
-              <p class="q"><span class="k">启示</span> 早报/雷达流水线本身也该有 harness：SerpAPI 失败、摘要失败要可降级。</p>
+              <p class="q"><span class="k">做什么</span> 让 agent 在新环境里自己出题、自己探索、自己归因，降低手写数据与盲目 RL 成本。</p>
+              <p class="q"><span class="k">怎么做的</span> Self-questioning → Self-navigating → Self-attributing 闭环（Fig.2）。</p>
+              <p class="q"><span class="k">新在哪</span> 把「任务生成 / 经验导航 / 细粒度归因」做成统一自演化框架。</p>
+              <p class="q"><span class="k">启示</span> Research Radar 自身也可自演化：失败检索与差解读回流成经验，而不是只推不管。</p>
             </div>
           </article>
         </div>
@@ -376,15 +376,15 @@
         <div class="list">
           <article class="paper" style="margin-top:8px">
             <div class="paper-main">
-              <a class="preview" href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">
+              <a class="preview" href="https://arxiv.org/abs/2603.25158" target="_blank" rel="noopener">
                 <img src="assets/paper-01.svg" alt="Skill Weaver paper preview" />
-                <div class="cap">预览图</div>
+                <div class="cap">方法图 · SVG</div>
               </a>
               <div class="paper-copy">
-                <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
-                <div class="authors">A. Chen, L. Park, M. Rivera — example</div>
+                <h4>Trace2Skill: Distill Trajectory-Local Lessons into Transferable Agent Skills</h4>
+                <div class="authors">J. Ni et al.</div>
                 <div class="url-row">
-                  <a href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">arxiv.org/abs/2609.01234</a>
+                  <a href="https://arxiv.org/abs/2603.25158" target="_blank" rel="noopener">arxiv.org/abs/2609.01234</a>
                 </div>
                 <div class="tags"><span class="tag">Agentic skill</span><span class="tag site">arxiv.org</span></div>
               </div>
