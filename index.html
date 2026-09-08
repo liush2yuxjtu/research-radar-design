@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Research Radar · Push Design v1</title>
+<style>
+  :root{
+    --ink:#0b1220;
+    --navy:#0f172a;
+    --blue:#2563eb;
+    --blue-glow:#3b82f6;
+    --soft:#e8eefc;
+    --card:#ffffff;
+    --muted:#64748b;
+    --line:#e2e8f0;
+    --scan:#dbeafe;
+    --ok:#059669;
+    --bg:#f1f5f9;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Hiragino Sans GB","Segoe UI",system-ui,sans-serif;
+    background:
+      radial-gradient(900px 420px at 12% -10%, rgba(37,99,235,.18), transparent 60%),
+      radial-gradient(700px 380px at 100% 0%, rgba(14,165,233,.12), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+  }
+  .page{max-width:980px;margin:0 auto;padding:40px 22px 72px}
+  .label{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:10px;
+  }
+  .label i{width:8px;height:8px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px rgba(37,99,235,.18)}
+  h1{margin:0 0 8px;font-size:30px;letter-spacing:-.02em}
+  .lede{color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 28px;max-width:62ch}
+
+  .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap}
+  .tab{
+    border:1px solid var(--line);background:#fff;border-radius:999px;
+    padding:8px 14px;font-size:13px;color:var(--muted);cursor:default;
+  }
+  .tab.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  /* ===== WeCom card preview ===== */
+  .wecom-shell{
+    background:linear-gradient(180deg,#111827,#0f172a);
+    border-radius:28px;padding:22px;box-shadow:0 30px 80px rgba(15,23,42,.28);
+    margin-bottom:36px;
+  }
+  .wecom-top{
+    display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+    color:#fff;margin-bottom:16px;padding:4px 6px 14px;border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .wecom-top h2{margin:0;font-size:20px}
+  .wecom-top p{margin:6px 0 0;color:#94a3b8;font-size:13px;line-height:1.5}
+  .stats{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{
+    background:rgba(59,130,246,.16);border:1px solid rgba(59,130,246,.35);
+    color:#bfdbfe;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:600;
+  }
+  .msg{
+    background:#f8fafc;border-radius:18px;overflow:hidden;
+  }
+  .msg-head{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+    color:#fff;padding:22px 22px 18px;
+  }
+  .msg-head .eyebrow{font-size:11px;letter-spacing:.16em;opacity:.7;font-weight:700;margin-bottom:8px}
+  .msg-head h3{margin:0;font-size:22px}
+  .msg-head .meta{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{
+    font-size:11px;font-weight:700;padding:5px 9px;border-radius:999px;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);
+  }
+  .msg-body{padding:8px 14px 16px}
+  .paper{
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:16px 16px 14px;margin-top:10px;
+  }
+  .paper .rank{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:11px;font-weight:800;color:var(--blue);letter-spacing:.08em;margin-bottom:8px;
+  }
+  .paper .rank span{
+    width:22px;height:22px;border-radius:7px;display:grid;place-items:center;
+    background:var(--soft);color:var(--blue);font-size:11px;
+  }
+  .paper h4{margin:0 0 6px;font-size:16px;line-height:1.45}
+  .paper .authors{color:var(--muted);font-size:12.5px;line-height:1.5;margin-bottom:6px}
+  .paper .venue{
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    font-size:12px;color:var(--muted);margin-bottom:10px;
+  }
+  .paper .venue a{color:var(--blue);text-decoration:none;font-weight:600}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+  .tag{
+    font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px;
+    background:#eff6ff;color:#1d4ed8;border:1px solid #dbeafe;
+  }
+  .tag.site{background:#f0fdf4;color:#047857;border-color:#bbf7d0}
+  .ai{
+    background:linear-gradient(180deg,#f8fafc,#f1f5f9);
+    border:1px solid #e2e8f0;border-radius:14px;padding:12px 14px;
+  }
+  .ai .ai-label{
+    font-size:11px;font-weight:800;letter-spacing:.1em;color:#475569;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .ai .ai-label::before{
+    content:"";width:7px;height:7px;border-radius:50%;background:var(--blue-glow);
+    box-shadow:0 0 0 3px rgba(59,130,246,.2);
+  }
+  .q{margin:0 0 9px;font-size:13px;line-height:1.65;color:#1e293b}
+  .q:last-child{margin-bottom:0}
+  .q b{color:#0f172a}
+  .q .k{
+    display:inline-block;min-width:4.8em;color:#2563eb;font-weight:800;font-size:12px;
+  }
+  .footnote{
+    margin:12px 14px 4px;color:#94a3b8;font-size:11px;line-height:1.5;
+  }
+
+  /* ===== Web archive strip ===== */
+  .section-title{margin:34px 0 12px;font-size:18px}
+  .archive{
+    background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+  }
+  .archive-bar{
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    padding:16px 18px;border-bottom:1px solid var(--line);background:#fafbfc;
+  }
+  .filters{display:flex;gap:8px;flex-wrap:wrap}
+  .filters .f{
+    border:1px solid var(--line);border-radius:999px;padding:6px 11px;font-size:12px;color:var(--muted);background:#fff;
+  }
+  .filters .f.on{background:var(--soft);color:var(--blue);border-color:#bfdbfe;font-weight:700}
+  .count{font-size:12px;color:var(--muted);align-self:center}
+  .row{display:grid;grid-template-columns:140px 1fr;min-height:220px}
+  .datecol{
+    background:#0f172a;color:#fff;padding:22px 16px;
+    border-right:1px solid rgba(255,255,255,.06);
+  }
+  .datecol .m{font-size:11px;letter-spacing:.14em;opacity:.65;font-weight:800}
+  .datecol .d{font-size:28px;font-weight:800;margin:6px 0 10px}
+  .datecol .n{font-size:12px;color:#93c5fd}
+  .list{padding:8px 14px 16px}
+  .note{
+    margin-top:22px;padding:14px 16px;border-radius:14px;
+    background:#fff;border:1px dashed #cbd5e1;color:var(--muted);font-size:13px;line-height:1.7;
+  }
+  .note strong{color:var(--ink)}
+  .refs{margin-top:10px;display:flex;flex-wrap:wrap;gap:8px}
+  .refs a{
+    font-size:12px;color:var(--blue);text-decoration:none;background:#eff6ff;
+    border:1px solid #dbeafe;padding:6px 10px;border-radius:999px;
+  }
+  @media (max-width:720px){
+    .row{grid-template-columns:1fr}
+    .datecol{display:flex;gap:14px;align-items:baseline}
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <div class="label"><i></i> Design only · v1</div>
+    <h1>Research Radar 推送版式</h1>
+    <p class="lede">沿用你们现有「RECENT PUBLICATIONS + AI 中文导读」气质，改成 Agent / Skill / Tool / Ontology 雷达；企微群推送优先可读密度，网页归档保留筛选与日期轴。下方示例内容为占位样例，非真实检索结果。</p>
+
+    <div class="tabs">
+      <div class="tab on">企微推送卡</div>
+      <div class="tab">网页归档</div>
+      <div class="tab">解读四问（已升级）</div>
+    </div>
+
+    <section class="wecom-shell">
+      <div class="wecom-top">
+        <div>
+          <h2>企微群消息预览</h2>
+          <p>群机器人 webhook 图文/Markdown 形态 · 第一版控制在 3–8 篇 · 每篇固定四问</p>
+        </div>
+        <div class="stats">
+          <div class="chip">覆盖日 2026-09-07</div>
+          <div class="chip">命中 6 · 去重后 3</div>
+          <div class="chip">关键词 × Site</div>
+        </div>
+      </div>
+
+      <article class="msg">
+        <header class="msg-head">
+          <div class="eyebrow">RESEARCH RADAR</div>
+          <h3>Agent / Skill / Tool / Ontology</h3>
+          <div class="meta">
+            <span class="pill">昨日新发 / 新收录</span>
+            <span class="pill">3 papers</span>
+            <span class="pill">3 中文导读</span>
+            <span class="pill">Updated 9/8/2026</span>
+          </div>
+        </header>
+        <div class="msg-body">
+          <article class="paper">
+            <div class="rank"><span>01</span> HIT · agentic skill</div>
+            <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
+            <div class="authors">A. Chen, L. Park, M. Rivera — example authors</div>
+            <div class="venue">
+              <span>arXiv · cs.AI</span>
+              <span>·</span>
+              <span>2026-09-07</span>
+              <span>·</span>
+              <a href="#">arxiv.org/abs/xxxx.xxxxx</a>
+            </div>
+            <div class="tags">
+              <span class="tag">Agentic skill</span>
+              <span class="tag">Skill evolution</span>
+              <span class="tag site">site:arxiv.org</span>
+            </div>
+            <div class="ai">
+              <div class="ai-label">AI 中文导读</div>
+              <p class="q"><span class="k">做什么</span> 从成功轨迹里自动抽出可复用 skill，并在后续任务中持续演化。</p>
+              <p class="q"><span class="k">怎么做的</span> 轨迹切片 → skill 模板蒸馏 → 在线验证回路；失败样本回流改写。</p>
+              <p class="q"><span class="k">新在哪</span> 把「技能发现」和「技能演化」做成同一闭环，而不是一次性提取。</p>
+              <p class="q"><span class="k">启示</span> 适合 Win-Agent / Eve DSH：把审单、质检等重复流程沉淀成可版本化 skill。</p>
+            </div>
+          </article>
+
+          <article class="paper">
+            <div class="rank"><span>02</span> HIT · tool retrieval</div>
+            <h4>OntoTool: Ontology-Aware Tool Retrieval for Multi-Agent Systems</h4>
+            <div class="authors">Y. Sato, R. Nguyen — example authors</div>
+            <div class="venue">
+              <span>OpenReview / ICLR-style</span>
+              <span>·</span>
+              <span>2026-09-07</span>
+              <span>·</span>
+              <a href="#">openreview.net/forum?id=…</a>
+            </div>
+            <div class="tags">
+              <span class="tag">Tool retrieval</span>
+              <span class="tag">Ontology-aware agent</span>
+              <span class="tag site">site:openreview.net</span>
+            </div>
+            <div class="ai">
+              <div class="ai-label">AI 中文导读</div>
+              <p class="q"><span class="k">做什么</span> 用领域本体约束工具召回，降低多 agent 选错工具的概率。</p>
+              <p class="q"><span class="k">怎么做的</span> 本体图嵌入 + 查询意图对齐 + 工具 schema 重排。</p>
+              <p class="q"><span class="k">新在哪</span> 检索目标不是文本相似，而是「本体角色可满足」。</p>
+              <p class="q"><span class="k">启示</span> 企微/业务工具多时，先建轻量 ontology，再做 tool router，比纯 embedding 更稳。</p>
+            </div>
+          </article>
+
+          <article class="paper">
+            <div class="rank"><span>03</span> HIT · agent harness</div>
+            <h4>HarnessBench: Measuring Agent Runtime Reliability under Tool Failures</h4>
+            <div class="authors">K. Brooks et al. — example authors</div>
+            <div class="venue">
+              <span>ACL Anthology</span>
+              <span>·</span>
+              <span>2026-09-07</span>
+              <span>·</span>
+              <a href="#">aclanthology.org/…</a>
+            </div>
+            <div class="tags">
+              <span class="tag">Agent runtime</span>
+              <span class="tag">Agent harness</span>
+              <span class="tag site">site:aclanthology.org</span>
+            </div>
+            <div class="ai">
+              <div class="ai-label">AI 中文导读</div>
+              <p class="q"><span class="k">做什么</span> 评测 agent runtime 在工具超时、脏返回、权限失败下的可靠性。</p>
+              <p class="q"><span class="k">怎么做的</span> 注入故障剧本 + 观测恢复策略 + 给出 harness 分数。</p>
+              <p class="q"><span class="k">新在哪</span> 把「会不会用工具」换成「工具坏了还能不能稳住」。</p>
+              <p class="q"><span class="k">启示</span> 早报/雷达流水线本身也该有 harness：SerpAPI 失败、摘要失败要可降级。</p>
+            </div>
+          </article>
+        </div>
+        <p class="footnote">示例数据 · Design only · 解读四问已从「新在哪里 / 性能 / 怎么解释 / 为什么重要」升级为「做什么 / 怎么做的 / 新在哪 / 对实际应用有什么启示」</p>
+      </article>
+    </section>
+
+    <h2 class="section-title">网页归档（同视觉语言）</h2>
+    <section class="archive">
+      <div class="archive-bar">
+        <div class="filters">
+          <span class="f on">All</span>
+          <span class="f">agent runtime</span>
+          <span class="f">agentic skill</span>
+          <span class="f">tool retrieval</span>
+          <span class="f">ontology-aware</span>
+          <span class="f">self-evolving</span>
+        </div>
+        <div class="count">example · 3 papers · 3 Chinese guides</div>
+      </div>
+      <div class="row">
+        <aside class="datecol">
+          <div class="m">SEPTEMBER</div>
+          <div class="d">7</div>
+          <div class="n">2026 · 3 PAPERS</div>
+        </aside>
+        <div class="list">
+          <article class="paper" style="margin-top:8px">
+            <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
+            <div class="authors">A. Chen, L. Park, M. Rivera — example</div>
+            <div class="venue"><span>arXiv</span><span>·</span><a href="#">DOI / abs</a></div>
+            <div class="tags"><span class="tag">Agentic skill</span><span class="tag site">arxiv.org</span></div>
+            <div class="ai">
+              <div class="ai-label">AI 中文导读</div>
+              <p class="q"><span class="k">做什么</span> …</p>
+              <p class="q"><span class="k">怎么做的</span> …</p>
+              <p class="q"><span class="k">新在哪</span> …</p>
+              <p class="q"><span class="k">启示</span> …</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="note">
+      <strong>设计取舍（相对参考项目）：</strong>
+      PaperPulse / OpenClaw Academic Radar / arxiv-radar 偏「dashboard + 打分」；你们第一版企微推送更适合「命中关键词 → 去重 → 四问导读」，少分数、多可执行启示。
+      保留现有早报的灰底导读块与日期侧栏；雷达感用 navy + 扫描蓝点，和头像一致。
+      <div class="refs">
+        <a href="https://github.com/viki22uied/PaperPulse">PaperPulse</a>
+        <a href="https://github.com/shenhao-stu/openclaw-academic-radar">OpenClaw Academic Radar</a>
+        <a href="https://github.com/nwinkelman2/arxiv-radar">arxiv-radar</a>
+        <a href="https://what.masfactory.dev/">NowWhat</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
