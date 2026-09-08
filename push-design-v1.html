@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Research Radar · Push Design v1</title>
+<title>Research Radar · Push Design v1.1 · image + url + text</title>
 <style>
   :root{
     --ink:#0b1220;
@@ -163,11 +163,54 @@
     .row{grid-template-columns:1fr}
     .datecol{display:flex;gap:14px;align-items:baseline}
   }
+
+  .paper-main{
+    display:grid;
+    grid-template-columns:132px 1fr;
+    gap:14px;
+    align-items:start;
+    margin-bottom:12px;
+  }
+  .preview{
+    display:block;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:#fff;
+    box-shadow:0 8px 18px rgba(15,23,42,.06);
+    text-decoration:none;
+  }
+  .preview img{
+    display:block;width:100%;aspect-ratio:3/4;object-fit:cover;
+    background:linear-gradient(180deg,#eef2ff,#f8fafc);
+  }
+  .preview .cap{
+    font-size:10px;font-weight:700;letter-spacing:.04em;
+    color:var(--blue);padding:7px 8px;background:#f8fafc;
+    border-top:1px solid var(--line);text-align:center;
+  }
+  .paper-copy h4{margin-top:0}
+  .url-row{
+    display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+    margin:8px 0 10px;font-size:12px;
+  }
+  .url-row a{
+    color:var(--blue);font-weight:700;text-decoration:none;
+    background:#eff6ff;border:1px solid #dbeafe;
+    padding:5px 9px;border-radius:999px;max-width:100%;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .url-row .doi{color:var(--muted);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px}
+  @media (max-width:560px){
+    .paper-main{grid-template-columns:1fr}
+    .preview{max-width:180px}
+  }
+
 </style>
 </head>
 <body>
   <main class="page">
-    <div class="label"><i></i> Design only · v1</div>
+    <div class="label"><i></i> Design only · v1.1</div>
     <h1>Research Radar 推送版式</h1>
     <p class="lede">沿用你们现有「RECENT PUBLICATIONS + AI 中文导读」气质，改成 Agent / Skill / Tool / Ontology 雷达；企微群推送优先可读密度，网页归档保留筛选与日期轴。下方示例内容为占位样例，非真实检索结果。</p>
 
@@ -204,19 +247,29 @@
         <div class="msg-body">
           <article class="paper">
             <div class="rank"><span>01</span> HIT · agentic skill</div>
-            <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
-            <div class="authors">A. Chen, L. Park, M. Rivera — example authors</div>
-            <div class="venue">
-              <span>arXiv · cs.AI</span>
-              <span>·</span>
-              <span>2026-09-07</span>
-              <span>·</span>
-              <a href="#">arxiv.org/abs/xxxx.xxxxx</a>
-            </div>
-            <div class="tags">
-              <span class="tag">Agentic skill</span>
-              <span class="tag">Skill evolution</span>
-              <span class="tag site">site:arxiv.org</span>
+            <div class="paper-main">
+              <a class="preview" href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">
+                <img src="assets/paper-01.svg" alt="Skill Weaver paper preview" />
+                <div class="cap">预览图</div>
+              </a>
+              <div class="paper-copy">
+                <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
+                <div class="authors">A. Chen, L. Park, M. Rivera — example authors</div>
+                <div class="venue">
+                  <span>arXiv · cs.AI</span>
+                  <span>·</span>
+                  <span>2026-09-07</span>
+                </div>
+                <div class="url-row">
+                  <a href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">arxiv.org/abs/2609.01234</a>
+                  <span class="doi">DOI · example</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">Agentic skill</span>
+                  <span class="tag">Skill evolution</span>
+                  <span class="tag site">site:arxiv.org</span>
+                </div>
+              </div>
             </div>
             <div class="ai">
               <div class="ai-label">AI 中文导读</div>
@@ -229,19 +282,29 @@
 
           <article class="paper">
             <div class="rank"><span>02</span> HIT · tool retrieval</div>
-            <h4>OntoTool: Ontology-Aware Tool Retrieval for Multi-Agent Systems</h4>
-            <div class="authors">Y. Sato, R. Nguyen — example authors</div>
-            <div class="venue">
-              <span>OpenReview / ICLR-style</span>
-              <span>·</span>
-              <span>2026-09-07</span>
-              <span>·</span>
-              <a href="#">openreview.net/forum?id=…</a>
-            </div>
-            <div class="tags">
-              <span class="tag">Tool retrieval</span>
-              <span class="tag">Ontology-aware agent</span>
-              <span class="tag site">site:openreview.net</span>
+            <div class="paper-main">
+              <a class="preview" href="https://openreview.net/forum?id=OntoToolDemo" target="_blank" rel="noopener">
+                <img src="assets/paper-02.svg" alt="OntoTool paper preview" />
+                <div class="cap">预览图</div>
+              </a>
+              <div class="paper-copy">
+                <h4>OntoTool: Ontology-Aware Tool Retrieval for Multi-Agent Systems</h4>
+                <div class="authors">Y. Sato, R. Nguyen — example authors</div>
+                <div class="venue">
+                  <span>OpenReview / ICLR-style</span>
+                  <span>·</span>
+                  <span>2026-09-07</span>
+                </div>
+                <div class="url-row">
+                  <a href="https://openreview.net/forum?id=OntoToolDemo" target="_blank" rel="noopener">openreview.net/forum?id=OntoToolDemo</a>
+                  <span class="doi">URL · example</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">Tool retrieval</span>
+                  <span class="tag">Ontology-aware agent</span>
+                  <span class="tag site">site:openreview.net</span>
+                </div>
+              </div>
             </div>
             <div class="ai">
               <div class="ai-label">AI 中文导读</div>
@@ -254,19 +317,29 @@
 
           <article class="paper">
             <div class="rank"><span>03</span> HIT · agent harness</div>
-            <h4>HarnessBench: Measuring Agent Runtime Reliability under Tool Failures</h4>
-            <div class="authors">K. Brooks et al. — example authors</div>
-            <div class="venue">
-              <span>ACL Anthology</span>
-              <span>·</span>
-              <span>2026-09-07</span>
-              <span>·</span>
-              <a href="#">aclanthology.org/…</a>
-            </div>
-            <div class="tags">
-              <span class="tag">Agent runtime</span>
-              <span class="tag">Agent harness</span>
-              <span class="tag site">site:aclanthology.org</span>
+            <div class="paper-main">
+              <a class="preview" href="https://aclanthology.org/2026.acl-long.0000/" target="_blank" rel="noopener">
+                <img src="assets/paper-03.svg" alt="HarnessBench paper preview" />
+                <div class="cap">预览图</div>
+              </a>
+              <div class="paper-copy">
+                <h4>HarnessBench: Measuring Agent Runtime Reliability under Tool Failures</h4>
+                <div class="authors">K. Brooks et al. — example authors</div>
+                <div class="venue">
+                  <span>ACL Anthology</span>
+                  <span>·</span>
+                  <span>2026-09-07</span>
+                </div>
+                <div class="url-row">
+                  <a href="https://aclanthology.org/2026.acl-long.0000/" target="_blank" rel="noopener">aclanthology.org/2026.acl-long.0000</a>
+                  <span class="doi">URL · example</span>
+                </div>
+                <div class="tags">
+                  <span class="tag">Agent runtime</span>
+                  <span class="tag">Agent harness</span>
+                  <span class="tag site">site:aclanthology.org</span>
+                </div>
+              </div>
             </div>
             <div class="ai">
               <div class="ai-label">AI 中文导读</div>
@@ -277,7 +350,7 @@
             </div>
           </article>
         </div>
-        <p class="footnote">示例数据 · Design only · 解读四问已从「新在哪里 / 性能 / 怎么解释 / 为什么重要」升级为「做什么 / 怎么做的 / 新在哪 / 对实际应用有什么启示」</p>
+<p class="footnote">示例数据 · Design only · 解读四问已从「新在哪里 / 性能 / 怎么解释 / 为什么重要」升级为「做什么 / 怎么做的 / 新在哪 / 对实际应用有什么启示」</p>
       </article>
     </section>
 
@@ -302,10 +375,20 @@
         </aside>
         <div class="list">
           <article class="paper" style="margin-top:8px">
-            <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
-            <div class="authors">A. Chen, L. Park, M. Rivera — example</div>
-            <div class="venue"><span>arXiv</span><span>·</span><a href="#">DOI / abs</a></div>
-            <div class="tags"><span class="tag">Agentic skill</span><span class="tag site">arxiv.org</span></div>
+            <div class="paper-main">
+              <a class="preview" href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">
+                <img src="assets/paper-01.svg" alt="Skill Weaver paper preview" />
+                <div class="cap">预览图</div>
+              </a>
+              <div class="paper-copy">
+                <h4>Skill Weaver: Distilling and Evolving Agent Skills from Trajectories</h4>
+                <div class="authors">A. Chen, L. Park, M. Rivera — example</div>
+                <div class="url-row">
+                  <a href="https://arxiv.org/abs/2609.01234" target="_blank" rel="noopener">arxiv.org/abs/2609.01234</a>
+                </div>
+                <div class="tags"><span class="tag">Agentic skill</span><span class="tag site">arxiv.org</span></div>
+              </div>
+            </div>
             <div class="ai">
               <div class="ai-label">AI 中文导读</div>
               <p class="q"><span class="k">做什么</span> …</p>
